@@ -13,6 +13,7 @@ repositories {
 
 dependencies {
     implementation("dev.kord:kord-core:0.14.0")
+    implementation("org.slf4j:slf4j-simple:2.1.0-alpha1")
 }
 
 tasks.jar {
