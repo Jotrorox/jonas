@@ -43,7 +43,7 @@ suspend fun main() {
                     description = "The current ping is: " + ping.inWholeMilliseconds + "ms"
                     footer {
                         text = "Jonas - made by jotrorox"
-                        icon = 
+                        icon = "https://raw.githubusercontent.com/Jotrorox/jonas/main/rsc/images/avatar.png"
                     }
                 }
             }
