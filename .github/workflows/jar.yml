@@ -3,12 +3,12 @@ name: Gradle clean jar
 on:
   push:
     branches:
-      - master
-      - dev
+      - main
+      - dev # Not yet implemented in the workflow
   pull_request:
     branches:
-      - master
-      - dev
+      - main
+      - dev # Not yet implemented in the workflow
 
 jobs:
   build:

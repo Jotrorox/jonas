@@ -1,6 +1,5 @@
 package com.jotrorox.jonas
 
-import dev.kord.cache.api.data.description
 import dev.kord.common.Color
 import dev.kord.common.entity.Snowflake
 import dev.kord.core.Kord
@@ -8,7 +7,6 @@ import dev.kord.core.behavior.interaction.response.respond
 import dev.kord.core.event.interaction.GuildChatInputCommandInteractionCreateEvent
 import dev.kord.core.on
 import dev.kord.gateway.Intent
-import dev.kord.gateway.PrivilegedIntent
 import dev.kord.rest.builder.message.embed
 
 suspend fun main() {
@@ -25,20 +23,20 @@ suspend fun main() {
     bot.on<GuildChatInputCommandInteractionCreateEvent> {
         val command = interaction.command
 
-        if (command.rootName.equals("ping")) {
+        if (command.rootName == "ping") {
             val response = interaction.deferEphemeralResponse()
             val ping = interaction.kord.gateway.averagePing
 
-            var embed_color = Color(0, 0, 255)
+            var embedColor = Color(0, 0, 255)
 
-            if (ping?.inWholeMilliseconds!! > 125) embed_color = Color(0, 255, 0)
-            if (ping.inWholeMilliseconds > 250) embed_color = Color(255, 255, 0)
-            if (ping.inWholeMilliseconds > 500) embed_color = Color(255, 0, 0)
+            if (ping?.inWholeMilliseconds!! > 125) embedColor = Color(0, 255, 0)
+            if (ping.inWholeMilliseconds > 250) embedColor = Color(255, 255, 0)
+            if (ping.inWholeMilliseconds > 500) embedColor = Color(255, 0, 0)
 
 
             response.respond {
                 embed {
-                    color = embed_color
+                    color = embedColor
                     title = "Ping"
                     description = "The current ping is: " + ping.inWholeMilliseconds + "ms"
                     footer {
@@ -55,7 +53,6 @@ suspend fun main() {
             playing("with you")
         }
 
-        @OptIn(PrivilegedIntent::class)
         intents += Intent.Guilds
     }
 }
