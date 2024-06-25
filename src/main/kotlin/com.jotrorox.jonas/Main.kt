@@ -8,6 +8,44 @@ import dev.kord.core.event.interaction.GuildChatInputCommandInteractionCreateEve
 import dev.kord.core.on
 import dev.kord.gateway.Intent
 import dev.kord.rest.builder.message.embed
+import java.sql.Connection
+import java.sql.DriverManager
+import java.sql.SQLException
+
+class DatabaseHelper(private val dbName: String) {
+
+    private var connection: Connection? = null
+
+    fun connect(): Boolean {
+        try {
+            connection = DriverManager.getConnection("jdbc:sqlite:$dbName")
+            println("Connected to $dbName")
+            return true
+        } catch (e: SQLException) {
+            e.printStackTrace()
+            return false
+        }
+    }
+
+    fun disconnect() {
+        try {
+            connection?.close()
+            println("Disconnected from $dbName")
+        } catch (e: SQLException) {
+            e.printStackTrace()
+        }
+    }
+
+    fun executeStatement(sql: String): Boolean {
+        return try {
+            connection?.createStatement()?.execute(sql)
+            true
+        } catch (e: SQLException) {
+            e.printStackTrace()
+            false
+        }
+    }
+}
 
 suspend fun main() {
     val token =  System.getenv("DISCORD_TOKEN") ?: error("No token provided.")
@@ -38,7 +76,7 @@ suspend fun main() {
                 embed {
                     color = embedColor
                     title = "Ping"
-                    description = "The current ping is: " + ping.inWholeMilliseconds + "ms"
+                    description = "The current ping is: ${ping.inWholeMilliseconds}ms"
                     footer {
                         text = "Jonas - made by jotrorox"
                         icon = "https://raw.githubusercontent.com/Jotrorox/jonas/main/rsc/images/avatar.png"
