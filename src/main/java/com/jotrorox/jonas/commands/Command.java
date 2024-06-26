@@ -7,6 +7,11 @@ abstract class Command {
     private static String name;
     private static String description;
 
+    public Command(String name, String description) {
+        Command.name = name;
+        Command.description = description;
+    }
+
     public void execute(SlashCommandInteractionEvent event) {
         return;
     }
