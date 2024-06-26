@@ -4,3 +4,5 @@ target
 *.iml
 *.env
 effective-pom.xml
+.settings
+.project
