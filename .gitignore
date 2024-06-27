@@ -6,3 +6,4 @@ target
 effective-pom.xml
 .settings
 .project
+.classpath
