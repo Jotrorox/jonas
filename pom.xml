@@ -7,9 +7,46 @@
 
   <groupId>com.jotrorox.jonas</groupId>
   <artifactId>jonas</artifactId>
-  <version>0.1</version>
 
   <name>jonas</name>
+  <version>0.1</version>
+  <description>A simple multi purpose discord bot</description>
+  <url>https://jotrorox.com</url>
+
+  <contributors>
+    <contributor>
+      <name>Johannes (Jotrorox) Müller</name>
+      <roles>
+        <role>Creator</role>
+        <role>Developer</role>
+        <role>Maintainer</role>
+      </roles>
+      <email>mail@jotrorox.com</email>
+      <organization>none</organization>
+      <organizationUrl>none</organizationUrl>
+      <timezone>Europe/Berlin</timezone>
+      <url>https://jotrorox.com</url>
+    </contributor>
+  </contributors>
+
+  <licenses>
+    <license>
+      <name>AGPL-3.0</name>
+      <url>https://www.gnu.org/licenses/agpl-3.0.html</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <organization>
+    <name>Johannes (Jotrorox) Müller</name>
+    <url>https://jotrorox.com</url>
+  </organization>
+
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/Jotrorox/jonas</url>
+  </issueManagement>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>21</maven.compiler.source>
