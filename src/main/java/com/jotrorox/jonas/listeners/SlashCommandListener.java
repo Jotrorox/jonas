@@ -1,5 +1,6 @@
 package com.jotrorox.jonas.listeners;
 
+import com.jotrorox.jonas.commands.DogCommand;
 import com.jotrorox.jonas.commands.DuckCommand;
 import com.jotrorox.jonas.commands.PingCommand;
 import com.jotrorox.jonas.commands.RPSCommand;
@@ -13,5 +14,6 @@ public class SlashCommandListener extends ListenerAdapter {
         if (event.getName().equals("ping")) (new PingCommand()).execute(event);
         if (event.getName().equals("rps")) (new RPSCommand()).execute(event);
         if (event.getName().equals("duck")) (new DuckCommand()).execute(event);
+        if (event.getName().equals("dog")) (new DogCommand()).execute(event);
     }
 }
