@@ -6,6 +6,7 @@ import com.jotrorox.jonas.commands.DogCommand;
 import com.jotrorox.jonas.commands.DuckCommand;
 import com.jotrorox.jonas.commands.PingCommand;
 import com.jotrorox.jonas.commands.RPSCommand;
+import com.jotrorox.jonas.commands.UFCommand;
 import com.jotrorox.jonas.listeners.SlashCommandListener;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -39,7 +40,8 @@ public class App {
             new DuckCommand().getData(),
             new DogCommand().getData(),
             new CatCommand().getData(),
-            new CNJokeCommand().getData()
+            new CNJokeCommand().getData(),
+            new UFCommand().getData()
         );
 
         commands.queue();
