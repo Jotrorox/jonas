@@ -1,13 +1,13 @@
 package com.jotrorox.jonas;
 
+import com.jotrorox.jonas.commands.DuckCommand;
+import com.jotrorox.jonas.commands.PingCommand;
+import com.jotrorox.jonas.commands.RPSCommand;
+import com.jotrorox.jonas.listeners.SlashCommandListener;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Collections;
-
-import com.jotrorox.jonas.commands.PingCommand;
-import com.jotrorox.jonas.commands.RPSCommand;
-import com.jotrorox.jonas.listeners.SlashCommandListener;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -32,7 +32,8 @@ public class App {
 
         commands.addCommands(
             new PingCommand().getData(),
-            new RPSCommand().getData()
+            new RPSCommand().getData(),
+            new DuckCommand().getData()
         );
 
         commands.queue();
