@@ -1,5 +1,6 @@
 package com.jotrorox.jonas;
 
+import com.jotrorox.jonas.commands.CatCommand;
 import com.jotrorox.jonas.commands.DogCommand;
 import com.jotrorox.jonas.commands.DuckCommand;
 import com.jotrorox.jonas.commands.PingCommand;
@@ -35,7 +36,8 @@ public class App {
             new PingCommand().getData(),
             new RPSCommand().getData(),
             new DuckCommand().getData(),
-            new DogCommand().getData()
+            new DogCommand().getData(),
+            new CatCommand().getData()
         );
 
         commands.queue();
