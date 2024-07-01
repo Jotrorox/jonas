@@ -1,13 +1,6 @@
 package com.jotrorox.jonas.listeners;
 
-import com.jotrorox.jonas.commands.CNJokeCommand;
-import com.jotrorox.jonas.commands.CatCommand;
-import com.jotrorox.jonas.commands.DogCommand;
-import com.jotrorox.jonas.commands.DuckCommand;
-import com.jotrorox.jonas.commands.PingCommand;
-import com.jotrorox.jonas.commands.RPSCommand;
-import com.jotrorox.jonas.commands.SettingsCommand;
-import com.jotrorox.jonas.commands.UFCommand;
+import com.jotrorox.jonas.commands.*;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
@@ -29,5 +22,6 @@ public class SlashCommandListener extends ListenerAdapter {
         if (event.getName().equals("settings")) (new SettingsCommand()).execute(
                 event
             );
+        if (event.getName().equals("play")) (new PlayCommand()).execute(event);
     }
 }

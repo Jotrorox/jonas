@@ -3,11 +3,15 @@ package com.jotrorox.jonas.commands;
 import com.jotrorox.jonas.buttons.settings.TestButton;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
+import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions;
 
 public class SettingsCommand extends Command {
 
     public SettingsCommand() {
         super("settings", "Allows you to tweak the bot to your liking");
+
+        this.getData().setGuildOnly(true);
+        this.getData().setDefaultPermissions(DefaultMemberPermissions.DISABLED);
     }
 
     @Override

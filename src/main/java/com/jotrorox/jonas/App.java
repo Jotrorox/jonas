@@ -1,23 +1,20 @@
 package com.jotrorox.jonas;
 
-import com.jotrorox.jonas.commands.CNJokeCommand;
-import com.jotrorox.jonas.commands.CatCommand;
-import com.jotrorox.jonas.commands.DogCommand;
-import com.jotrorox.jonas.commands.DuckCommand;
-import com.jotrorox.jonas.commands.PingCommand;
-import com.jotrorox.jonas.commands.RPSCommand;
-import com.jotrorox.jonas.commands.SettingsCommand;
-import com.jotrorox.jonas.commands.UFCommand;
+import com.jotrorox.jonas.commands.*;
 import com.jotrorox.jonas.listeners.ButtonInteractionListener;
 import com.jotrorox.jonas.listeners.SlashCommandListener;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Collections;
+import java.util.EnumSet;
+
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
+import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
 public class App {
 
@@ -25,14 +22,23 @@ public class App {
         String token = new String(Files.readAllBytes(Paths.get("token.env")));
 
         JDABuilder builder = JDABuilder.createLight(
-            token,
-            Collections.emptyList()
+            token
         );
+
+        EnumSet<GatewayIntent> intents = EnumSet.of(
+            GatewayIntent.GUILD_MESSAGES,
+            GatewayIntent.GUILD_VOICE_STATES
+        );
+
+        builder.enableIntents(intents);
 
         builder.addEventListeners(new SlashCommandListener());
         builder.addEventListeners(new ButtonInteractionListener());
         
+        builder.setStatus(OnlineStatus.DO_NOT_DISTURB);
         builder.setActivity(Activity.customStatus("Just vibin"));
+
+        builder.enableCache(CacheFlag.VOICE_STATE);
 
         JDA bot = builder.build();
 
@@ -46,7 +52,8 @@ public class App {
             new CatCommand().getData(),
             new CNJokeCommand().getData(),
             new UFCommand().getData(),
-            new SettingsCommand().getData()
+            new SettingsCommand().getData(),
+            new PlayCommand().getData()
         );
 
         commands.queue();
