@@ -6,6 +6,7 @@ import com.jotrorox.jonas.commands.DogCommand;
 import com.jotrorox.jonas.commands.DuckCommand;
 import com.jotrorox.jonas.commands.PingCommand;
 import com.jotrorox.jonas.commands.RPSCommand;
+import com.jotrorox.jonas.commands.SettingsCommand;
 import com.jotrorox.jonas.commands.UFCommand;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -23,6 +24,9 @@ public class SlashCommandListener extends ListenerAdapter {
                 event
             );
         if (event.getName().equals("uselessfact")) (new UFCommand()).execute(
+                event
+            );
+        if (event.getName().equals("settings")) (new SettingsCommand()).execute(
                 event
             );
     }

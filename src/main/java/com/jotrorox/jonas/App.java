@@ -6,7 +6,9 @@ import com.jotrorox.jonas.commands.DogCommand;
 import com.jotrorox.jonas.commands.DuckCommand;
 import com.jotrorox.jonas.commands.PingCommand;
 import com.jotrorox.jonas.commands.RPSCommand;
+import com.jotrorox.jonas.commands.SettingsCommand;
 import com.jotrorox.jonas.commands.UFCommand;
+import com.jotrorox.jonas.listeners.ButtonInteractionListener;
 import com.jotrorox.jonas.listeners.SlashCommandListener;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -28,6 +30,8 @@ public class App {
         );
 
         builder.addEventListeners(new SlashCommandListener());
+        builder.addEventListeners(new ButtonInteractionListener());
+        
         builder.setActivity(Activity.customStatus("Just vibin"));
 
         JDA bot = builder.build();
@@ -41,7 +45,8 @@ public class App {
             new DogCommand().getData(),
             new CatCommand().getData(),
             new CNJokeCommand().getData(),
-            new UFCommand().getData()
+            new UFCommand().getData(),
+            new SettingsCommand().getData()
         );
 
         commands.queue();

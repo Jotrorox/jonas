@@ -21,10 +21,10 @@ public class CNJokeCommand extends Command {
 
     @Override
     public void execute(SlashCommandInteractionEvent event) {
-        EmbedBuilder ping_embed = new EmbedBuilder();
+        EmbedBuilder cnjoke_embed = new EmbedBuilder();
 
-        ping_embed.setTitle("Chuck Norris Joke");
-        ping_embed.setFooter(
+        cnjoke_embed.setTitle("Chuck Norris Joke");
+        cnjoke_embed.setFooter(
             "Jonas - by jotrorox",
             "https://raw.githubusercontent.com/Jotrorox/jonas/main/rsc/images/avatar.png"
         );
@@ -32,14 +32,14 @@ public class CNJokeCommand extends Command {
         try {
             CNResponse response = fetchJoke();
 
-            ping_embed.setColor(Color.GREEN);
-            ping_embed.setDescription(response.getValue());
-            ping_embed.setThumbnail(response.getIcon_url());
+            cnjoke_embed.setColor(Color.GREEN);
+            cnjoke_embed.setDescription(response.getValue());
+            cnjoke_embed.setThumbnail(response.getIcon_url());
         } catch (Exception e) {
             e.printStackTrace();
 
-            ping_embed.setColor(Color.RED);
-            ping_embed.setDescription(
+            cnjoke_embed.setColor(Color.RED);
+            cnjoke_embed.setDescription(
                 "An error occurred while fetching the joke!"
             );
         }
@@ -47,7 +47,7 @@ public class CNJokeCommand extends Command {
         event
             .deferReply()
             .setEphemeral(true)
-            .addEmbeds(ping_embed.build())
+            .addEmbeds(cnjoke_embed.build())
             .queue();
     }
 
@@ -68,8 +68,7 @@ public class CNJokeCommand extends Command {
             )
         ) {
             Gson gson = new Gson();
-            CNResponse response = gson.fromJson(reader, CNResponse.class);
-            return response;
+            return gson.fromJson(reader, CNResponse.class);
         } finally {
             con.disconnect();
         }

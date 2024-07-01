@@ -32,10 +32,10 @@ public class CatCommand extends Command {
 
     @Override
     public void execute(SlashCommandInteractionEvent event) {
-        EmbedBuilder ping_embed = new EmbedBuilder();
+        EmbedBuilder cat_embed = new EmbedBuilder();
 
-        ping_embed.setTitle("🐱 Cat!");
-        ping_embed.setFooter(
+        cat_embed.setTitle("🐱 Cat!");
+        cat_embed.setFooter(
             "Jonas - by jotrorox",
             "https://raw.githubusercontent.com/Jotrorox/jonas/main/rsc/images/avatar.png"
         );
@@ -44,14 +44,14 @@ public class CatCommand extends Command {
             boolean fact = event.getOption("fact").getAsBoolean();
             if (fact) {
                 MeowFactsResponse meowFacts = getMeowFacts();
-                if (meowFacts != null) ping_embed.setDescription(
+                if (meowFacts != null) cat_embed.setDescription(
                     meowFacts.getFact()
                 );
-                else ping_embed.setDescription("Failed to get a cat fact!");
+                else cat_embed.setDescription("Failed to get a cat fact!");
                 event
                     .deferReply()
                     .setEphemeral(true)
-                    .addEmbeds(ping_embed.build())
+                    .addEmbeds(cat_embed.build())
                     .queue();
                 return;
             }
@@ -59,16 +59,16 @@ public class CatCommand extends Command {
 
         try {
             boolean gif = event.getOption("gif").getAsBoolean();
-            if (gif) ping_embed.setImage("https://cataas.com/cat/gif");
-            else ping_embed.setImage("https://cataas.com/cat");
+            if (gif) cat_embed.setImage("https://cataas.com/cat/gif");
+            else cat_embed.setImage("https://cataas.com/cat");
         } catch (Exception e) {
-            ping_embed.setImage("https://cataas.com/cat");
+            cat_embed.setImage("https://cataas.com/cat");
         }
 
         event
             .deferReply()
             .setEphemeral(true)
-            .addEmbeds(ping_embed.build())
+            .addEmbeds(cat_embed.build())
             .queue();
     }
 

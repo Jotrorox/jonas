@@ -21,10 +21,10 @@ public class UFCommand extends Command {
 
     @Override
     public void execute(SlashCommandInteractionEvent event) {
-        EmbedBuilder ping_embed = new EmbedBuilder();
+        EmbedBuilder uf_embed = new EmbedBuilder();
 
-        ping_embed.setTitle("Useless Fact!");
-        ping_embed.setFooter(
+        uf_embed.setTitle("Useless Fact!");
+        uf_embed.setFooter(
             "Jonas - by jotrorox",
             "https://raw.githubusercontent.com/Jotrorox/jonas/main/rsc/images/avatar.png"
         );
@@ -32,13 +32,13 @@ public class UFCommand extends Command {
         try {
             UFResponse response = fetchFact();
 
-            ping_embed.setColor(Color.GREEN);
-            ping_embed.setDescription(response.getText());
+            uf_embed.setColor(Color.GREEN);
+            uf_embed.setDescription(response.getText());
         } catch (Exception e) {
             e.printStackTrace();
 
-            ping_embed.setColor(Color.RED);
-            ping_embed.setDescription(
+            uf_embed.setColor(Color.RED);
+            uf_embed.setDescription(
                 "An error occurred while fetching the joke!"
             );
         }
@@ -46,7 +46,7 @@ public class UFCommand extends Command {
         event
             .deferReply()
             .setEphemeral(true)
-            .addEmbeds(ping_embed.build())
+            .addEmbeds(uf_embed.build())
             .queue();
     }
 
@@ -61,8 +61,7 @@ public class UFCommand extends Command {
             )
         ) {
             Gson gson = new Gson();
-            UFResponse response = gson.fromJson(reader, UFResponse.class);
-            return response;
+            return gson.fromJson(reader, UFResponse.class);
         } finally {
             con.disconnect();
         }

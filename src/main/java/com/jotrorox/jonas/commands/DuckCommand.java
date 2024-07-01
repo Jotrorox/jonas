@@ -23,10 +23,10 @@ public class DuckCommand extends Command {
 
     @Override
     public void execute(SlashCommandInteractionEvent event) {
-        EmbedBuilder ping_embed = new EmbedBuilder();
+        EmbedBuilder duck_embed = new EmbedBuilder();
 
-        ping_embed.setTitle("Duck - Quack!");
-        ping_embed.setFooter(
+        duck_embed.setTitle("Duck - Quack!");
+        duck_embed.setFooter(
             "Jonas - by jotrorox",
             "https://raw.githubusercontent.com/Jotrorox/jonas/main/rsc/images/avatar.png"
         );
@@ -34,12 +34,12 @@ public class DuckCommand extends Command {
         try {
             DuckResponse response = fetchDuck();
 
-            ping_embed.setImage(response.getUrl());
+            duck_embed.setImage(response.getUrl());
         } catch (Exception e) {
             e.printStackTrace();
 
-            ping_embed.setColor(Color.RED);
-            ping_embed.setDescription(
+            duck_embed.setColor(Color.RED);
+            duck_embed.setDescription(
                 "An error occurred while fetching the duck image!"
             );
         }
@@ -47,7 +47,7 @@ public class DuckCommand extends Command {
         event
             .deferReply()
             .setEphemeral(true)
-            .addEmbeds(ping_embed.build())
+            .addEmbeds(duck_embed.build())
             .queue();
     }
 
@@ -62,8 +62,7 @@ public class DuckCommand extends Command {
             )
         ) {
             Gson gson = new Gson();
-            DuckResponse response = gson.fromJson(reader, DuckResponse.class);
-            return response;
+            return gson.fromJson(reader, DuckResponse.class);
         } finally {
             con.disconnect();
         }

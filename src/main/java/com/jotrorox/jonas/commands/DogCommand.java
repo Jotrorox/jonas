@@ -20,10 +20,10 @@ public class DogCommand extends Command {
 
     @Override
     public void execute(SlashCommandInteractionEvent event) {
-        EmbedBuilder ping_embed = new EmbedBuilder();
+        EmbedBuilder dog_embed = new EmbedBuilder();
 
-        ping_embed.setTitle("Dog! 🐶");
-        ping_embed.setFooter(
+        dog_embed.setTitle("Dog! 🐶");
+        dog_embed.setFooter(
             "Jonas - by jotrorox",
             "https://raw.githubusercontent.com/Jotrorox/jonas/main/rsc/images/avatar.png"
         );
@@ -31,12 +31,12 @@ public class DogCommand extends Command {
         try {
             DogResponse response = fetchDog();
 
-            ping_embed.setImage(response.getMessage());
+            dog_embed.setImage(response.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
 
-            ping_embed.setColor(java.awt.Color.RED);
-            ping_embed.setDescription(
+            dog_embed.setColor(java.awt.Color.RED);
+            dog_embed.setDescription(
                 "An error occurred while fetching the dog image!"
             );
         }
@@ -44,7 +44,7 @@ public class DogCommand extends Command {
         event
             .deferReply()
             .setEphemeral(true)
-            .addEmbeds(ping_embed.build())
+            .addEmbeds(dog_embed.build())
             .queue();
     }
 
@@ -59,8 +59,7 @@ public class DogCommand extends Command {
             )
         ) {
             Gson gson = new Gson();
-            DogResponse response = gson.fromJson(reader, DogResponse.class);
-            return response;
+            return gson.fromJson(reader, DogResponse.class);
         } finally {
             con.disconnect();
         }
