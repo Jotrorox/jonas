@@ -1,5 +1,6 @@
 package com.jotrorox.jonas.commands;
 
+import com.jotrorox.jonas.buttons.settings.TestButton;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 
@@ -23,7 +24,7 @@ public class SettingsCommand extends Command {
             .deferReply()
             .setEphemeral(true)
             .addEmbeds(settings_embed.build())
-            .addActionRow()
+            .addActionRow((new TestButton()).getButton())
             .queue();
     }
 }
