@@ -2,6 +2,7 @@ package com.jotrorox;
 
 import ch.qos.logback.classic.Logger;
 import com.jotrorox.commands.PingCommand;
+import com.jotrorox.db.DatabaseManager;
 import com.jotrorox.listeners.ReadyListener;
 import com.jotrorox.listeners.SlashCommandListener;
 import net.dv8tion.jda.api.JDA;
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 public class Jonas {
 
     private static final Logger mainLogger = (Logger) LoggerFactory.getLogger(Jonas.class);
+    private static final DatabaseManager databaseManager = new DatabaseManager("jdbc:sqlite:jonas.db");
 
     public static void main(String[] args) throws InterruptedException {
         String token = System.getenv("DISCORD_TOKEN");
@@ -32,5 +34,9 @@ public class Jonas {
         bot.updateCommands().addCommands(
                 (new PingCommand()).getSlashCommandData()
         ).queue();
+    }
+
+    public static DatabaseManager getDatabaseManager() {
+        return databaseManager;
     }
 }
