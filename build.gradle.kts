@@ -10,8 +10,14 @@ repositories {
 }
 
 dependencies {
+    // The Discord API library
     implementation("net.dv8tion:JDA:5.0.1")
+
+    // The Logging Framework
     implementation("ch.qos.logback:logback-classic:1.5.6")
+
+    // The DatabaseDriver
+    implementation("org.xerial:sqlite-jdbc:3.46.0.0")
 
     // Needed for the JDA library
     implementation("net.sf.trove4j:trove4j:3.0.3")

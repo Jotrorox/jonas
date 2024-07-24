@@ -12,6 +12,8 @@ public class PingCommand extends StandardCommand {
 
     @Override
     public void execute(SlashCommandInteractionEvent event) {
+        event.deferReply(true).queue();
+
         int latency = (int) event.getJDA().getGatewayPing();
 
         EmbedBuilder pingEmbed = new EmbedBuilder();
@@ -27,6 +29,6 @@ public class PingCommand extends StandardCommand {
 
         pingEmbed.setFooter("Jonas - By Jotrorox", event.getJDA().getSelfUser().getAvatarUrl());
 
-        event.replyEmbeds(pingEmbed.build()).setEphemeral(true).queue();
+        event.getHook().editOriginalEmbeds(pingEmbed.build()).queue();
     }
 }
