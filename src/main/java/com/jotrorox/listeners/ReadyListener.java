@@ -36,7 +36,6 @@ public class ReadyListener implements EventListener {
         executorService.submit(() -> {
             Logger dbLogger = DatabaseLogger.getLogger();
             Jonas.getDatabaseManager().connect();
-            dbLogger.info("Connected to the database!");
             Jonas.getDatabaseManager().executeUpdate(DBQueries.CREATE_TABLE.getQuery());
             dbLogger.info("Created the table in the database!");
 
@@ -48,7 +47,6 @@ public class ReadyListener implements EventListener {
                 UserUtil.insertUser(member.getId(), member.getEffectiveName(), member.getUser().getAvatarUrl(), member.getGuild().getId());
 
             Jonas.getDatabaseManager().disconnect();
-            dbLogger.info("Disconnected from the database!");
         });
     }
 }
