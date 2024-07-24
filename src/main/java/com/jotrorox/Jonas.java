@@ -1,16 +1,16 @@
-package com.jotrorox.jonas;
+package com.jotrorox;
 
 import ch.qos.logback.classic.Logger;
-import com.jotrorox.jonas.commands.PingCommand;
-import com.jotrorox.jonas.listeners.ReadyListener;
-import com.jotrorox.jonas.listeners.SlashCommandListener;
+import com.jotrorox.commands.PingCommand;
+import com.jotrorox.listeners.ReadyListener;
+import com.jotrorox.listeners.SlashCommandListener;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import org.slf4j.LoggerFactory;
 
-public class Main {
+public class Jonas {
 
-    private static final Logger mainLogger = (Logger) LoggerFactory.getLogger(Main.class);
+    private static final Logger mainLogger = (Logger) LoggerFactory.getLogger(Jonas.class);
 
     public static void main(String[] args) throws InterruptedException {
         String token = System.getenv("DISCORD_TOKEN");

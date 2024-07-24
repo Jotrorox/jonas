@@ -1,4 +1,4 @@
-package com.jotrorox.jonas.commands;
+package com.jotrorox.commands;
 
 import ch.qos.logback.classic.Logger;
 import org.slf4j.LoggerFactory;

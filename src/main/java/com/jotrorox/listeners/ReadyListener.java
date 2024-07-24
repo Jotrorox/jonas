@@ -1,4 +1,4 @@
-package com.jotrorox.jonas.listeners;
+package com.jotrorox.listeners;
 
 import ch.qos.logback.classic.Logger;
 import net.dv8tion.jda.api.entities.Activity;
