@@ -37,6 +37,12 @@ public class UserUtil {
         Jonas.getDatabaseManager().disconnect();
     }
 
+    /**
+     * Gets a user from the database.
+     *
+     * @param id The ID of the user.
+     * @return The user.
+     */
     public static DBUser getUser(String id) {
         Logger logger = DatabaseLogger.getLogger();
         Jonas.getDatabaseManager().connect();
@@ -58,5 +64,35 @@ public class UserUtil {
 
         Jonas.getDatabaseManager().disconnect();
         return null;
+    }
+
+    /**
+     * Updates a user in the database.
+     *
+     * @param id The ID of the user.
+     * @param name The name of the user.
+     * @param avatarUrl The avatar URL of the user.
+     * @param guildId The ID of the guild the user is in.
+     * @return Whether the user was updated.
+     */
+    public static boolean updateUser(String id, String name, String avatarUrl, String guildId) {
+        Logger logger = DatabaseLogger.getLogger();
+        Jonas.getDatabaseManager().connect();
+
+        if (getUser(id) == null) return false;
+
+        try (PreparedStatement preparedStatement = Jonas.getDatabaseManager().prepareStatement(DBQueries.UPDATE_USER.getQuery())) {
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, avatarUrl);
+            preparedStatement.setString(3, guildId);
+            preparedStatement.setString(4, id);
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            logger.error("Failed to execute the prepared statement!", e);
+            return false;
+        } finally {
+            Jonas.getDatabaseManager().disconnect();
+        }
     }
 }
