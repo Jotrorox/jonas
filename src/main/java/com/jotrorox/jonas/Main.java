@@ -1,7 +1,9 @@
 package com.jotrorox.jonas;
 
 import ch.qos.logback.classic.Logger;
+import com.jotrorox.jonas.commands.PingCommand;
 import com.jotrorox.jonas.listeners.ReadyListener;
+import com.jotrorox.jonas.listeners.SlashCommandListener;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import org.slf4j.LoggerFactory;
@@ -21,9 +23,14 @@ public class Main {
         JDABuilder builder = JDABuilder.createDefault(token);
 
         builder.addEventListeners(new ReadyListener());
+        builder.addEventListeners(new SlashCommandListener());
 
         JDA bot = builder.build();
 
         bot.awaitReady();
+
+        bot.updateCommands().addCommands(
+                (new PingCommand()).getSlashCommandData()
+        ).queue();
     }
 }
