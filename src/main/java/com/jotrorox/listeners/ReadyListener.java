@@ -16,5 +16,6 @@ public class ReadyListener implements EventListener {
         logger.info("Bot is ready and logged in as {}", genericEvent.getJDA().getSelfUser().getAsTag());
 
         genericEvent.getJDA().getPresence().setActivity(Activity.customStatus("This bot is still in development! Please be patient!"));
+        logger.info("Set the bot's activity to 'This bot is still in development! Please be patient!'");
     }
 }
