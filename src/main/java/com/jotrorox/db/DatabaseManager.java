@@ -2,6 +2,7 @@ package com.jotrorox.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
@@ -62,6 +63,23 @@ public class DatabaseManager {
         } catch (SQLException e) {
             DatabaseLogger.getLogger().error("Failed to execute an update query!", e);
             return false;
+        }
+    }
+
+    /**
+     * Prepares a statement for the database.
+     *
+     * @param query The query to prepare.
+     * @return The prepared statement.
+     */
+    public PreparedStatement prepareStatement(String query) {
+        if (!isConnected()) return null;
+
+        try {
+            return connection.prepareStatement(query);
+        } catch (SQLException e) {
+            DatabaseLogger.getLogger().error("Failed to prepare a statement!", e);
+            return null;
         }
     }
 

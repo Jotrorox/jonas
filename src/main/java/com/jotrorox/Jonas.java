@@ -7,6 +7,7 @@ import com.jotrorox.listeners.ReadyListener;
 import com.jotrorox.listeners.SlashCommandListener;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 import org.slf4j.LoggerFactory;
 
 public class Jonas {
@@ -23,6 +24,8 @@ public class Jonas {
         }
 
         JDABuilder builder = JDABuilder.createDefault(token);
+
+        builder.enableIntents(GatewayIntent.GUILD_MEMBERS);
 
         builder.addEventListeners(new ReadyListener());
         builder.addEventListeners(new SlashCommandListener());
