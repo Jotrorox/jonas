@@ -2,6 +2,9 @@ package com.jotrorox.jonas.listeners;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.jotrorox.jonas.config.Config;
+import com.jotrorox.jonas.config.ConfigUtil;
+
 import ch.qos.logback.classic.Logger;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.events.GenericEvent;
@@ -18,8 +21,10 @@ public class ReadyListener implements EventListener {
         Logger logger = ListenerLogger.getLogger();
         logger.info("Bot is ready and logged in as {}", event.getJDA().getSelfUser().getAsTag());
 
-        event.getJDA().getPresence().setActivity(Activity.customStatus("This bot is still in development! Please be patient!"));
-        logger.info("Set the bot's activity to 'This bot is still in development! Please be patient!'");
+        Config config = ConfigUtil.getConfigFromFile(ConfigUtil.DEFAULT_CONFIG_PATH);
+
+        event.getJDA().getPresence().setActivity(Activity.customStatus(config.getDiscordStatus()));
+        logger.info("Set the bot's activity to '{}'", config.getDiscordStatus());
         
     }
 }

@@ -33,7 +33,7 @@ public class Config {
      * 
      * @return The Discord token of the bot.
      */
-    public static String getDiscordToken() {
+    public String getDiscordToken() {
         return DISCORD_TOKEN;
     }
 
@@ -42,7 +42,7 @@ public class Config {
      * 
      * @return The status of the bot.
      */
-    public static String getDiscordStatus() {
+    public String getDiscordStatus() {
         return DISCORD_STATUS;
     }
 }
