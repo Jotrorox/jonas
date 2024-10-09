@@ -5,3 +5,4 @@
 build
 
 config.properties
+!app/src/main/resources/config.properties
